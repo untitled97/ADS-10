@@ -23,23 +23,24 @@ class Tree {
          }
      }
     void createPermutations(Node* root, std::vector<char> arg) {
-         if (root->ch != ' ') {
+        if (root->ch != ' ') {
              arg.push_back(root->ch);
-         } else if (root->children.empty()) {
-             permutations.push_back(arg);
-         } else {
-             for (Node* child : root->children)
-                 createPermutations(child, arg);
          }
-     }
+        if (root->children.empty()) {
+            permutations.push_back(arg);
+        } else {
+            for (Node* child : root->children)
+                 createPermutations(child, arg);
+        }
+    }
 
  public:
     explicit Tree(std::vector<char> arg) {
         root = new Node;
         root->ch = ' '; 
         createTree(root, arg);
-        std::vector<char> node;
-        createPermutations(root, node);
+        //std::vector<char> node;
+        createPermutations(root, {});
     }
     std::vector<std::vector<char>> getAllPermutations() const {
          return permutations;
