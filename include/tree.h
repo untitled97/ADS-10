@@ -25,7 +25,7 @@ class Tree {
     void createPermutations(Node* root, std::vector<char> arg) {
          if (root->ch != ' ') {
              arg.push_back(root->ch);
-         } else if (root->children.empty()) {
+         } if (root->children.empty()) {
              permutations.push_back(arg);
          } else {
              for (Node* child : root->children)
@@ -35,12 +35,12 @@ class Tree {
 
  public:
     explicit Tree(std::vector<char> arg) {
-         root = new Node;
-         root->ch = ' '; 
-         createTree(root, arg);
-         std::vector<char> node;
-         createPermutations(root, node);
-     }
+        root = new Node;
+        root->ch = ' '; 
+        createTree(root, arg);
+        std::vector<char> node;
+        createPermutations(root, node);
+    }
     std::vector<std::vector<char>> getAllPermutations() const {
          return permutations;
      }
