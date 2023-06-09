@@ -8,7 +8,7 @@ class Tree {
  private:
     struct Node {
          char ch;
-         std::vector<Node*>children;
+         std::vector<Node*> children;
     };
     Node* root = nullptr;
     std::vector<std::vector<char>> permutations;
@@ -17,7 +17,7 @@ class Tree {
              Node* temp = new Node;
              temp->ch = symb;
              root->children.push_back(temp);
-             std::vector<char>child = arg;
+             std::vector<char> child = arg;
              child.erase(std::find(child.begin(), child.end(), symb));
              createTree(temp, child);
          }
