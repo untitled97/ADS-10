@@ -6,27 +6,41 @@
 
 class Tree {
  private:
-	 struct Node {
-		 char ch;
-		 std::vector<Node*>children;
-	 };
-	 Node* root = nullptr;
-	 std::vector<std::vector<char>>permutation;
-	 void createTree(Node* root, const std::vector<char>& arg) {
-		 for (const auto& symb : arg) {
-			 Node* temp = new Node;
-			 temp->ch = symb;
-			 root->children.push_back(temp);
-			 std::vector<char> new_vector(arg);
-			 new_vector.erase(std::find(new_vector.begin(), new_vector.end(), symb));
-			 createTree(temp, new_vector);
-		 }
-	 }
-	 void makePerm(Node*, std::vector<char>);
-	 void createTreePerm(const std::vector<char>&);
+    struct Node {
+         char ch;
+         std::vector<Node*>children;
+     };
+    Node* root = nullptr;
+    std::vector<std::vector<char>>permutations;
+    void createTree(Node* root, const std::vector<char>& arg) {
+         for (auto& symb : arg) {
+             Node* temp = new Node;
+             temp->ch = symb;
+             root->children.push_back(temp);
+             std::vector<char>child = arg;
+             child.erase(std::find(child.begin(), child.end(), symb));
+             createTree(temp, child);
+         }
+     }
+    void createPermutations(Node* root, std::vector<char> arg) {
+         if (root->ch != ' ') {
+             arg.push_back(root->ch);
+         } else if (root->children.empty()) {
+             permutations.push_back(arg);
+         } else {
+             for (Node* child : root->children)
+                 createPermutations(child, arg);
+         }
+     }
  public:
-	 explicit Tree(const std::vector<char>&)
-	 std::vector<std::vector<char>> getPerm() const;
+    std::vector<std::vector<char>> getAllPermutations() const {
+         return permutations;
+     }
+    Tree(std::vector<char>& arg) {
+         root = new Node;
+         createTree(root, arg);
+         createPermutations(root, {});
+     }
 };
 
 #endif  // INCLUDE_TREE_H_
