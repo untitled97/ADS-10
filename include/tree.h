@@ -32,7 +32,7 @@ class Tree {
                  createPermutations(child, arg);
          }
      }
-    
+
  public:
     explicit Tree(std::vector<char> arg) {
          root = new Node;
@@ -42,7 +42,6 @@ class Tree {
     std::vector<std::vector<char>> getAllPermutations() const {
          return permutations;
      }
-
 };
 
 #endif  // INCLUDE_TREE_H_
