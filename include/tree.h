@@ -9,9 +9,9 @@ class Tree {
     struct Node {
          char ch;
          std::vector<Node*>children;
-     };
+    };
     Node* root = nullptr;
-    std::vector<std::vector<char>>permutations;
+    std::vector<std::vector<char>> permutations;
     void createTree(Node* root, const std::vector<char>& arg) {
          for (auto& symb : arg) {
              Node* temp = new Node;
@@ -32,15 +32,17 @@ class Tree {
                  createPermutations(child, arg);
          }
      }
+    
  public:
-    std::vector<std::vector<char>> getAllPermutations() const {
-         return permutations;
-     }
-    Tree(std::vector<char>& arg) {
+    explicit Tree(std::vector<char> arg) {
          root = new Node;
          createTree(root, arg);
          createPermutations(root, {});
      }
+    std::vector<std::vector<char>> getAllPermutations() const {
+         return permutations;
+     }
+
 };
 
 #endif  // INCLUDE_TREE_H_
