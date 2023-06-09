@@ -36,6 +36,7 @@ class Tree {
  public:
     explicit Tree(std::vector<char> arg) {
          root = new Node;
+         root->ch = ' '; 
          createTree(root, arg);
          std::vector<char> node;
          createPermutations(root, node);
